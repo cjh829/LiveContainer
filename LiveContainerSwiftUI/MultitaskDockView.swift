@@ -869,20 +869,20 @@ public struct MultitaskDockSwiftView: View {
             .padding(.vertical, 15)
             .padding(.horizontal, dynamicPadding)
             .frame(width: dockManager.dockWidth)
-            .modifier { content in
-                if #available(iOS 26.0, *), SharedModel.isLiquidGlassEnabled {
-                    content.glassEffect(.regular, in: .rect(cornerRadius: 15))
-                } else {
-                    content.background(
-                        RoundedRectangle(cornerRadius: 15)
-                            .fill(Color.black.opacity(dockManager.isDockHidden ? 0.3 : 0.7))
-                            .overlay(
-                                RoundedRectangle(cornerRadius: 15)
-                                    .stroke(Color.white.opacity(dockManager.isDockHidden ? 0.1 : 0.3), lineWidth: 1)
-                            )
-                    )
-                }
-            }
+//             .modifier { content in
+//                 if #available(iOS 26.0, *), SharedModel.isLiquidGlassEnabled {
+//                     content.glassEffect(.regular, in: .rect(cornerRadius: 15))
+//                 } else {
+//                     content.background(
+//                         RoundedRectangle(cornerRadius: 15)
+//                             .fill(Color.black.opacity(dockManager.isDockHidden ? 0.3 : 0.7))
+//                             .overlay(
+//                                 RoundedRectangle(cornerRadius: 15)
+//                                     .stroke(Color.white.opacity(dockManager.isDockHidden ? 0.1 : 0.3), lineWidth: 1)
+//                             )
+//                     )
+//                 }
+//             }
             .scaleEffect(dockManager.isVisible ? 1.0 : 0.8)
             .opacity(dockManager.isDockHidden ? 0.4 : 1.0)
             .offset(dragOffset)
