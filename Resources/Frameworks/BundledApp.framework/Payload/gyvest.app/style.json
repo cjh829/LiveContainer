@@ -1,0 +1,134 @@
+{
+	"view": {
+		"background": {
+			"color": "#FFFFFF"
+		},
+		"bar": {
+			"style": "default"
+		}
+	},
+	"alert": {
+		"exit": {
+			"style": {
+				"container": {
+					"color": "#FFFFFF"
+				},
+				"header": {
+					"background": {
+						"color": "#FFFFFF00"
+					},
+					"bold": true,
+					"color": "#383B43",
+					"size": 16.0
+				},
+				"message": {
+					"bold": false,
+					"color": "#383B43",
+					"size": 14.0
+				},
+				"horizontal_separator": {
+					"color": "#EEEEEE"
+				},
+				"vertical_separator": {
+					"color": "#EEEEEE"
+				},
+				"cancel": {
+					"bold": false,
+					"color": "#6AAAF5",
+					"size": 15.0
+				},
+				"confirm": {
+					"bold": true,
+					"color": "#D8A871",
+					"size": 15.0
+				}
+			},
+			"text": {
+				"header": "提示",
+				"message": "确定退出并返回吗?",
+				"cancel": "刷新",
+				"confirm": "确定"
+			}
+		},
+		"notopen": {
+			"style": {
+				"container": {
+					"color": "#FFFFFF"
+				},
+				"header": {
+					"background": {
+						"color": "#FFFFFF00"
+					},
+					"bold": true,
+					"color": "#383B43",
+					"size": 16.0
+				},
+				"message": {
+					"bold": false,
+					"color": "#383B43",
+					"size": 14.0
+				},
+				"horizontal_separator": {
+					"color": "#EEEEEE"
+				},
+				"vertical_separator": {
+					"color": "#EEEEEE"
+				},
+				"confirm": {
+					"bold": true,
+					"color": "#D8A871",
+					"size": 15.0
+				}
+			},
+			"text": {
+				"header": "温馨提示",
+				"message": "检测到手机未安装软件，请您安装后重试",
+				"confirm": "确定"
+			}
+		}
+	},
+	"game": {
+		"need_loading": true,
+		"loading_name": "GameLoading"
+	},
+	"launch_loading": {
+		"message": {
+			"bold": false,
+			"color": "#FCCA95",
+			"prefix": "",
+			"size": 13.0
+		},
+		"progress": {
+			"background": {
+				"color": "#FFFFFF66"
+			},
+			"border": {
+				"color": "#FFFFC1",
+				"width": 0
+			},
+			"corner": {
+				"bottomLeft": 3.0,
+				"bottomRight": 3.0,
+				"topLeft": 3.0,
+				"topRight": 3.0
+			},
+			"gradient": {
+				"colors": [
+					"#B88849",
+					"#DAB672",
+					"#FFFFC1"
+				],
+				"direction": {
+					"start": {
+						"x": 0.5,
+						"y": 1.0
+					},
+					"end": {
+						"x": 0.5,
+						"y": 0.0
+					}
+				}
+			}
+		}
+	}
+}

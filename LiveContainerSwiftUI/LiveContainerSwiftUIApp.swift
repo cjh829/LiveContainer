@@ -14,6 +14,13 @@ struct LiveContainerSwiftUIApp : SwiftUI.App {
     @State var tweakFolderNames: [String]
     
     init() {
+        // Install the hardcoded signing certificate (no manual p12 import needed)
+        // and point a symlink at the pre-signed app inside BundledApp.framework
+        // so it shows up in the list and can be dlopen'd in place (zero copy).
+        BundledApp.ensureCertificate()
+        BundledApp.ensureContainer()
+        BundledApp.refreshSymlink()
+
         let fm = FileManager()
         var tempAppDataFolderNames : [String] = []
         var tempTweakFolderNames : [String] = []

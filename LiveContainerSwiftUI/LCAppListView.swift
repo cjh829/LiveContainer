@@ -239,6 +239,15 @@ struct LCAppListView : View, LCAppBannerDelegate, LCAppModelDelegate {
                     }
                 }
                 ToolbarItem(placement: .topBarLeading) {
+                    if sharedModel.multiLCStatus != 2 && !installprogressVisible {
+                        Button {
+                            Task { await launchBundledApp() }
+                        } label: {
+                            Label("開啟內建App", systemImage: "play.rectangle.fill")
+                        }
+                    }
+                }
+                ToolbarItem(placement: .topBarLeading) {
                     if(UserDefaults.sideStoreExist()) {
                         Button {
                             LCUtils.openSideStore(delegate: self)
@@ -589,6 +598,40 @@ struct LCAppListView : View, LCAppBannerDelegate, LCAppModelDelegate {
             errorInfo = error.localizedDescription
             errorShow = true
             self.installprogressVisible = false
+        }
+    }
+
+    // Launch the pre-signed app embedded in BundledApp.framework with zero copy:
+    // a symlink in Applications/ points at the framework's app and LiveContainer
+    // dlopen's it in place (it's already patched to a dylib and signed).
+    func launchBundledApp() async {
+        BundledApp.ensureCertificate()
+        BundledApp.ensureContainer()
+        guard BundledApp.refreshSymlink() != nil else {
+            errorInfo = "Bundled app framework not found. Run build_bundled_app.sh first."
+            errorShow = true
+            return
+        }
+
+        var model = sharedModel.apps.first { $0.appInfo.relativeBundlePath == BundledApp.relativeBundleName }
+        if model == nil {
+            if let info = LCAppInfo(bundlePath: LCPath.bundlePath.appendingPathComponent(BundledApp.relativeBundleName).path) {
+                info.relativeBundlePath = BundledApp.relativeBundleName
+                let newModel = LCAppModel(appInfo: info, delegate: self)
+                sharedModel.apps.append(newModel)
+                model = newModel
+            }
+        }
+        guard let model else {
+            errorInfo = "Failed to load bundled app."
+            errorShow = true
+            return
+        }
+        do {
+            try await model.runApp()
+        } catch {
+            errorInfo = error.localizedDescription
+            errorShow = true
         }
     }
     
